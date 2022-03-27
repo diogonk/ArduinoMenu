@@ -430,11 +430,14 @@ Used menuVariantBase::printTo(navRoot &root,bool sel,menuOut& out, idx_t idx,idx
   #ifdef MENU_FMT_WRAPS
     if (out.fmtStart(*this,type()==selectClass?menuOut::fmtSelect:menuOut::fmtChoose,root.node(),idx)==proceed) {
   #endif
-    // MENU_DEBUG_OUT<<"variant ";
-    // print_P(MENU_DEBUG_OUT,operator[](at).getText());
-    // MENU_DEBUG_OUT<<endl;
-    out.setColor(valColor,sel,prompt::enabled,ed);
-    if (l>0) l-=operator[](at).printRaw(out,l);
+    if(this->style() != wrapStyle)
+    {
+      // MENU_DEBUG_OUT<<"variant ";
+      // print_P(MENU_DEBUG_OUT,operator[](at).getText());
+      // MENU_DEBUG_OUT<<endl;
+      out.setColor(valColor,sel,prompt::enabled,ed);
+      if (l>0) l-=operator[](at).printRaw(out,l);
+    }
   #ifdef MENU_FMT_WRAPS
     }
   #endif
