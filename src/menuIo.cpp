@@ -222,7 +222,7 @@ void menuOut::previewMenu(navRoot& root,menuNode& menu,idx_t panelNr) {
         fmtStart(p,fmtCursor,root.node(),i);
       #endif
       setColor(fgColor,false,p.enabled);
-      drawCursor(i,false,p.enabled,false,panelNr);
+      // drawCursor(i,false,p.enabled,false,panelNr);
       #ifdef MENU_FMT_WRAPS
         fmtEnd(p,fmtCursor,root.node(),i);
       #endif
@@ -413,8 +413,10 @@ Used menuOut::printMenu(navNode &nav,idx_t panelNr) {
           fmtStart(p,fmtCursorOpen,nav,i);
           // fmtStart(p,fmtCursor,nav,i);
         #endif
-        if (asPad&&selected) print("[");
-        else drawCursor(ist,selected,p.enabled,ed,panelNr);//assuming only one character
+        // if (asPad&&selected) print("[");
+        // else drawCursor(ist,selected,p.enabled,ed,panelNr);//assuming only one character
+        if (!(asPad))
+          drawCursor(ist,selected,p.enabled,ed,panelNr);//assuming only one character
         //<------ cursorEnd
         #ifdef MENU_FMT_WRAPS
           fmtEnd(p,fmtCursorOpen,nav,i);
@@ -433,7 +435,7 @@ Used menuOut::printMenu(navNode &nav,idx_t panelNr) {
               // fmtStart(p,fmtCursor,nav,i);
               fmtStart(p,fmtCursorClose,nav,i);
             #endif
-            print(selected?"]":"");
+            // print(selected?"]":"");
             #ifdef MENU_FMT_WRAPS
               fmtEnd(p,fmtCursorClose,nav,i);
               // fmtEnd(p,fmtCursor,nav,i);
