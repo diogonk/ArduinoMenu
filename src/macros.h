@@ -196,8 +196,10 @@ Menu::utftOut id##n(gfx,color,id##Tops##n,id##Panels##n,fontW,fontH);
 	};\
 Menu::outputsList id(id##_outPtrs,sizeof(id##_outPtrs)/sizeof(Menu::menuOut*));
 
+#define MENUNOCURSOR(id,text,aFn,mask,style,...) altMENU(Menu::menu,id,text,aFn,mask,style,(Menu::_menuData|Menu::_canNav|Menu::_notDrawCursor),__VA_ARGS__)
 #define MENU(id,text,aFn,mask,style,...) altMENU(Menu::menu,id,text,aFn,mask,style,(Menu::_menuData|Menu::_canNav),__VA_ARGS__)
 #define PADMENU(id,text,aFn,mask,style,...) altMENU(Menu::menu,id,text,aFn,mask,style,(Menu::_asPad|Menu::_menuData|Menu::_canNav|Menu::_parentDraw),__VA_ARGS__)
+#define PADMENUNOCURSOR(id,text,aFn,mask,style,...) altMENU(Menu::menu,id,text,aFn,mask,style,(Menu::_asPad|Menu::_menuData|Menu::_canNav|Menu::_parentDraw|Menu::_notDrawCursor),__VA_ARGS__)
 #define altMENU(objType,id,text,aFn,mask,style,ss,...)\
   FOR_EACH(DECL,__VA_ARGS__)\
   constText id##_text[] MEMMODE=text;\
@@ -247,6 +249,7 @@ Menu::outputsList id(id##_outPtrs,sizeof(id##_outPtrs)/sizeof(Menu::menuOut*));
 #define EDIT(...) EDIT_(__COUNTER__,textField,(Menu::systemStyles)(_noStyle|_canNav|_parentDraw),__VA_ARGS__)
 //#define EDIT(editor,...) FIELD_(__COUNTER__,editor,((Menu::systemStyles)(Menu::_canNav)),__VA_ARGS__)
 #define altFIELD(fieldObj,...) FIELD_(__COUNTER__,fieldObj,((Menu::systemStyles)(Menu::_canNav|Menu::_parentDraw)),__VA_ARGS__)
+#define altFIELDNOCURSOR(fieldObj,...) FIELD_(__COUNTER__,fieldObj,((Menu::systemStyles)(Menu::_canNav|Menu::_parentDraw|Menu::_notDrawCursor)),__VA_ARGS__)
 #define VALUE(...) VALUE_(__COUNTER__,__VA_ARGS__)
 #define ITEM(...) ITEM_(__COUNTER__,__VA_ARGS__)
 #define OBJ(...) OBJ_(__VA_ARGS__)

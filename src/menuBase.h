@@ -76,7 +76,8 @@ www.r-site.net
       _parentDraw=1<<2,//000100
       _isVariant=1<<3,// 001000
       _asPad=1<<4,//     010000
-      _Exit=1<<5//       100000
+      _Exit=1<<5,//      100000
+      _notDrawCursor=1<<6//     010000
     };
     //showTitle and noTitle override the default
     enum styles {

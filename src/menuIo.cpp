@@ -350,7 +350,7 @@ Used menuOut::printMenu(navNode &nav,idx_t panelNr) {
         #ifdef MENU_FMT_WRAPS
           fmtEnd(*nav.target,fmtTitle,nav,-1);
         #endif
-        if (asPad) {
+        if (asPad &&  !nav.target->has(_notDrawCursor)) {
           #ifdef MENU_FMT_WRAPS
             fmtStart(*nav.target,fmtCursor,nav,-1);
           #endif
@@ -415,7 +415,7 @@ Used menuOut::printMenu(navNode &nav,idx_t panelNr) {
         #endif
         // if (asPad&&selected) print("[");
         // else drawCursor(ist,selected,p.enabled,ed,panelNr);//assuming only one character
-        if (!(asPad))
+        if (!(asPad || nav.target->has(_notDrawCursor)))
           drawCursor(ist,selected,p.enabled,ed,panelNr);//assuming only one character
         //<------ cursorEnd
         #ifdef MENU_FMT_WRAPS
